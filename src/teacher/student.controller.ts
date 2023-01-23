@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get,Put } from '@nestjs/common';
+import { Controller, Get,Param,Put } from '@nestjs/common';
 
 @Controller('teachers/:teacherId/students')
 export class StudentTeacherController {
@@ -8,7 +8,10 @@ export class StudentTeacherController {
         return "get all student that belong to a teacher"
     }
     @Put('/:studentId')
-    updateStudentTeacher(){
-        return "update teacher's student by student id"
+    updateStudentTeacher(
+        @Param('studentId') studentId: string,
+        @Param('teacherId') teacherId: string
+    ){
+        return `update teacher's ${teacherId} student by student id ${studentId}`
     }
 }
